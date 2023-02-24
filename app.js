@@ -2,9 +2,12 @@ const express = require('express');
 const https = require('https');
 const app = express();
 
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+
 app.get("/",function(request,response){
     // response.sendFile(__dirname+"/index.html");
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=Yangon&appid=ea20a9984986425c0c8025db970f4dd4";
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=Yangon&appid="+apiKey;
     https.get(url,function(res){
         res.on("data",function(data){
             const weatherData = JSON.parse(data);
